@@ -4,8 +4,6 @@ using System.Linq;
 using System.Net.Mime;
 using System.Threading.Tasks;
 using Jellyfin.Plugins.Telegram.Configuration;
-using MediaBrowser.Common.Net;
-using MediaBrowser.Model.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Net.Http;
@@ -18,13 +16,11 @@ namespace Jellyfin.Plugins.Telegram.Api
     public class TelegramNotificationsController : ControllerBase
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly IJsonSerializer _jsonSerializer;
         private readonly ILogger _logger;
 
-        public TelegramNotificationsController(IHttpClientFactory httpClientFactory, IJsonSerializer jsonSerializer, ILoggerFactory loggerFactory)
+        public TelegramNotificationsController(IHttpClientFactory httpClientFactory, ILoggerFactory loggerFactory)
         {
             _httpClientFactory = httpClientFactory;
-            _jsonSerializer = jsonSerializer;
             _logger = loggerFactory.CreateLogger<TelegramNotificationsController>();
         }
 

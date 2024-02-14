@@ -8,7 +8,6 @@ using Jellyfin.Plugins.Telegram.Configuration;
 using System.Text.Json;
 using MediaBrowser.Common.Net;
 using MediaBrowser.Controller.Entities;
-using Microsoft.Extensions.Logging;
 using MediaBrowser.Controller.Notifications;
 using MediaBrowser.Model.Serialization;
 using System.Net.Mime;
@@ -20,12 +19,10 @@ namespace Jellyfin.Plugins.Telegram
     public class Notifier : INotificationService
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly ILogger<Notifier> _logger;
 
-        public Notifier(ILogger<Notifier> logger, IHttpClientFactory httpClientFactory)
+        public Notifier(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
-            _logger = logger;
         }
 
         public static async Task SendNotification(IHttpClientFactory httpClientFactory, string token, string chatId, bool fSilentNotificationEnabled, string text)
